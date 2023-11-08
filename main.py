@@ -9,11 +9,11 @@ def display_grid():
 
 def draw_check():
     for i in grid:
-        if i.is():
-            return False
-        else:
-            pass
+        if i == "X" or i == "O":
+            continue
+        return False
     return True
+            
 
 def win_check():
     # Check rows
@@ -50,6 +50,9 @@ def game_loop():
             grid[grid.index(inp)] = player_one_piece
         
         display_grid()
+        if draw_check() is True:
+            print("its a draw!")
+            break
         if win_check() is True:
             print("you won P1!!!")
             break
@@ -72,10 +75,6 @@ def game_loop():
         display_grid()
         if win_check() is True:
             print("you won P2!!!")
-            break
-
-        if draw_check() is True:
-            print("its a draw!")
             break
 
 game_loop()
