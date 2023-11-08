@@ -1,13 +1,19 @@
-from math import ceil
-
 grid = [1,2,3,4,5,6,7,8,9]
 
 player_one_piece = "O"
 player_two_piece = "X"
 
 def display_grid():
-    for i in range(0,9,3):
-        print(grid[0 + i], grid[1 + i], grid[2 + i])
+    for i in range(0, 9, 3):
+        print(grid[i], grid[i + 1], grid[i + 2])
+
+def draw_check():
+    for i in grid:
+        if i.is():
+            return False
+        else:
+            pass
+    return True
 
 def win_check():
     # Check rows
@@ -47,6 +53,7 @@ def game_loop():
         if win_check() is True:
             print("you won P1!!!")
             break
+        
         inp = input("where do you wanna go P2?\n")
         try:
             inp = int(inp)
@@ -65,6 +72,10 @@ def game_loop():
         display_grid()
         if win_check() is True:
             print("you won P2!!!")
+            break
+
+        if draw_check() is True:
+            print("its a draw!")
             break
 
 game_loop()
