@@ -46,6 +46,7 @@ def game_loop():
 
         if inp not in grid:
             print("someone already placed there!")
+            continue
         else:
             grid[grid.index(inp)] = player_one_piece
         
@@ -56,25 +57,27 @@ def game_loop():
         if win_check() is True:
             print("you won P1!!!")
             break
-        
-        inp = input("where do you wanna go P2?\n")
-        try:
-            inp = int(inp)
-            if inp > 9 or inp < 1:
-                print("please enter a valid number")
+        while True:
+            inp = input("where do you wanna go P2?\n")
+            try:
+                inp = int(inp)
+                if inp > 9 or inp < 1:
+                    print("please enter a valid number")
+                    continue
+            except ValueError:
+                print("please enter valid numby!")
                 continue
-        except ValueError:
-            print("please enter valid numby!")
-            continue
 
-        if inp not in grid:
-            print("someone already placed there!")
-        else:
-            grid[grid.index(inp)] = player_two_piece
-        
-        display_grid()
-        if win_check() is True:
-            print("you won P2!!!")
+            if inp not in grid:
+                print("someone already placed there!")
+                continue
+            else:
+                grid[grid.index(inp)] = player_two_piece
+            
+            display_grid()
+            if win_check() is True:
+                print("you won P2!!!")
+                break
             break
 
 game_loop()
